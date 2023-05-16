@@ -50,5 +50,12 @@ class CartItem(models.Model):
         return new_price
   
         
-    
-    
+
+
+class Contact(models.Model):
+    address = models.CharField('Адреса', max_length=50)
+    telephone = models.CharField('Телефон', max_length=50)
+    email = models.CharField('e-mail', max_length=50)
+
+    def __str__(self):
+        return self.address

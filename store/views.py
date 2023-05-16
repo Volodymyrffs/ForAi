@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Product, Cart, CartItem
+from .models import Product, Cart, CartItem, Contact
 from django.http import JsonResponse
 import json
 from django.contrib import messages
@@ -18,6 +18,11 @@ def index(request):
         
     context = {"products":products}
     return render(request, "index.html", context)
+
+
+def about(request):
+    contacts = Contact.objects.all()
+    return render(request, 'about.html', {'title': 'Наші контати', 'contacts': contacts})
 
 
 def cart(request):
