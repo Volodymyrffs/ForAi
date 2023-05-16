@@ -8,7 +8,8 @@ from django.contrib.auth import authenticate, login
 
 
 # Create your views here.
-
+#https://www.youtube.com/watch?v=wmBdMBrREFk
+#https://github.com/ClintonCode20/django_shopping_cart
 
 def index(request):
     products = Product.objects.all()
