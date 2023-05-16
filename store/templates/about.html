@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Про нас
+{% endblock %}
+
+{% block contacts %}
+   <h4 class="text-center">Контакти</h4>
+    {% for el in  contacts%}
+        <div class="text-center">
+            <h5> {{ el.address }}</h5><br>
+            <h5> Номер телефону:{{ el.telephone }}</h5><br>
+            <h5> Наша електронна пошта:{{ el.email}}</h5>
+        <br>
+        </div>
+    {% endfor %}
+
+{% endblock %}
