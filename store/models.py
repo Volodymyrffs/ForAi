@@ -7,7 +7,8 @@ class Product(models.Model):
     name = models.CharField(max_length=50)
     price = models.IntegerField()
     picture = models.ImageField(upload_to="img", default="")
-    
+    sale = models.CharField('Акція ', max_length=50, blank=True)
+    about_products = models.TextField('Опис товару', blank=True)
     
     def __str__(self):
         return self.name

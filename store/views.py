@@ -26,6 +26,13 @@ def about(request):
     return render(request, 'about.html', {'title': 'Наші контати', 'contacts': contacts})
 
 
+def product(request):
+    products = Product.objects.all()
+
+    context = {"products": products}
+    return render(request, "product.html", context)
+
+
 def cart(request):
     
     # cart = None
