@@ -49,7 +49,9 @@ class CartItem(models.Model):
     def price(self):
         new_price = self.product.price * self.quantity
         return new_price
-  
+
+
+
         
 
 
@@ -60,3 +62,5 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.address
+
+

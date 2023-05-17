@@ -46,3 +46,8 @@ function addToCart(e){
         console.log(error)
     })
 }
+function productPage(a){
+    let product_id = a.target.value
+    let url = "/add_to_cart"
+     let data = {id:product_id}
+}

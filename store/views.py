@@ -17,7 +17,7 @@ def index(request):
     # if request.user.is_authenticated:
     #     cart, created = Cart.objects.get_or_create(user=request.user, completed=False)
         
-    context = {"products":products}
+    context = {"products": products}
     return render(request, "index.html", context)
 
 
@@ -26,11 +26,10 @@ def about(request):
     return render(request, 'about.html', {'title': 'Наші контати', 'contacts': contacts})
 
 
-def product(request):
-    products = Product.objects.all()
+def detail(request, id):
 
-    context = {"products": products}
-    return render(request, "product.html", context)
+    product = Product.objects.get(id=id)
+    return render(request,  'detail.html', {'product': product})
 
 
 def cart(request):
