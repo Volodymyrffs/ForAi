@@ -26,11 +26,12 @@ btns.forEach(btn=>{
     btn.addEventListener("click", addToCart)
 })
 
+
 function addToCart(e){
     let product_id = e.target.value
     let url = "/add_to_cart"
-
     let data = {id:product_id}
+
 
     fetch(url, {
         method: "POST",
@@ -40,14 +41,12 @@ function addToCart(e){
     .then(res=>res.json())
     .then(data=>{
         document.getElementById("num_of_items").innerHTML = data
-        console.log(data)
+        console.log(data,product_id)
     })
     .catch(error=>{
         console.log(error)
     })
 }
-function productPage(a){
-    let product_id = a.target.value
-    let url = "/add_to_cart"
-     let data = {id:product_id}
-}
+
+
+

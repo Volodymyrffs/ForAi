@@ -17,6 +17,8 @@
                     <h5 class="fw-bold mb-0 text-black">Кошик</h5>
 
                     <p class="mb-0 text-muted">{{item.quantity}}</p>
+                    <div class="cartitems"><p class="badge bg-dark text-white ms-1 rounded-pill" id="num_of_items">{{cart.num_of_items}}</p>
+               </div>
                   </div>
                   <hr class="my-4">
         {% for item in cart.cartitems.all %}
@@ -33,15 +35,15 @@
                     <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
                       <button class="btn btn-link px-2"
                         onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                        <i class="fas fa-minus"></i>
+                       <i class="fas fa-minus"></i>
                       </button>
 
                       <input id="form1" min="0" name="quantity" value="{{item.quantity}}" type="number"
-                        class="form-control form-control-sm" />
+                       readonly class="form-control-plaintext"/>
 
                       <button class="btn btn-link px-2"
                         onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                        <i class="fa fa-plus" ></i>
+                        <i class="fas fa-plus"></i>
                       </button>
                     </div>
                     <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
@@ -147,6 +149,9 @@ let cart_id = "{{cart.id}}"
 
 </script>
 
+
+
+     
 
 {% endblock content %}
 

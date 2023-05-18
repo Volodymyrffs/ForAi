@@ -5,6 +5,7 @@ import json
 from django.contrib import messages
 import uuid
 from django.contrib.auth import authenticate, login
+from django.conf import settings
 
 
 # Create your views here.
@@ -46,11 +47,12 @@ def cart(request):
     # context = {"cart":cart}
     return render(request, "cart.html")
 
+
+
 def add_to_cart(request):
     data = json.loads(request.body)
     product_id = data["id"]
     product = Product.objects.get(id=product_id)
-    
     
     if request.user.is_authenticated:
         cart, created = Cart.objects.get_or_create(user=request.user, completed=False)
@@ -76,10 +78,16 @@ def add_to_cart(request):
             cartitem.quantity += 1
             cartitem.save()
             num_of_item = cart.num_of_items
-        
-    
-        print(cartitem)
+
+    print(cartitem)
+
     return JsonResponse(num_of_item, safe=False)
+
+
+
+
+
+
 
 
 def sign_in(request):
@@ -140,5 +148,20 @@ def confirm_payment(request, pk):
     cart.save()
     messages.success(request, "Payment made successfully")
     return redirect("index")
+
+
+def remove(self, product):
+    """
+    Remove a product from the cart.
+    """
+    product_id = str(product.id)
+    if product_id in self.cart:
+        # Subtract 1 from the quantity
+        self.cart[product_id]['quantity'] -= 1
+        # If the quantity is now 0, then delete the item
+        if self.cart[product_id]['quantity'] == 0:
+            del self.cart[product_id]
+        self.save()
+
 
 
