@@ -163,3 +163,12 @@ def remove(request):
         return JsonResponse({'success': True})
 
     return JsonResponse({'success': False})
+
+def remove_from_cart(request, item_id):
+    # Получите объект товара из корзины по его ID
+    # Например:
+    # item = CartItem.objects.get(id=item_id)
+    # item.delete()
+
+    # Возвращаем успешный JSON-ответ
+    return JsonResponse({'success': True})

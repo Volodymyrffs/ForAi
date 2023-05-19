@@ -55,36 +55,6 @@ btnsd.forEach(btn=>{
 })
 
 
-
-
-function removeFromCart(e) {
-    let item_id = e.target.value;
-    let url = "/remove/";
-    let formData = new FormData();
-    formData.append('item_id', item_id);
-
-    fetch(url, {
-        method: 'POST',
-        body: formData,
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest'  // Установите заголовок X-Requested-With для указания AJAX-запроса
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            // Обработайте успешный ответ
-            console.log('Элемент успешно удален из корзины.');
-        } else {
-            // Обработайте ошибку
-            console.log('Ошибка при удалении элемента из корзины.');
-        }
-    })
-    .catch(error => {
-        console.log(formData);
-    });
-}
-
 document.addEventListener('DOMContentLoaded', function() {
   let removeForms = document.querySelectorAll('.remove-form');
   removeForms.forEach(function(form) {
@@ -92,27 +62,27 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-function removeCartItem(e) {
-  e.preventDefault();
-  let form = e.target;
-  let formData = new FormData(form);
+function removeFromCart(e) {
+    let item_id = e.target.value;
+    let url = '/remove/${item_id}/';
 
-  fetch(form.action, {
-    method: 'POST',
-    body: formData,
-    headers: {
-      'X-Requested-With': 'XMLHttpRequest'
-    }
-  })
-  .then(response => response.json())
-  .then(data => {
-    if (data.success) {
-      console.log('Элемент успешно удален из корзины.');
-    } else {
-      console.log('Ошибка при удалении элемента из корзины.');
-    }
-  })
-  .catch(error => {
-    console.log('Произошла ошибка при выполнении запроса:', error);
-  });
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrftoken,
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            console.log('Товар успешно удален из корзины.');
+            // Обновите ваш интерфейс корзины, если необходимо
+        } else {
+            console.log('Ошибка при удалении товара из корзины.');
+        }
+    })
+    .catch(error => {
+        console.log('Произошла ошибка при выполнении запроса:', error);
+    });
 }
