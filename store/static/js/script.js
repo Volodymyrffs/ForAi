@@ -58,14 +58,15 @@ btnsd.forEach(btn=>{
 document.addEventListener('DOMContentLoaded', function() {
   let removeForms = document.querySelectorAll('.remove-form');
   removeForms.forEach(function(form) {
-    form.addEventListener('submit', removeCartItem);
+    form.addEventListener('submit', removeFromCart);
   });
 });
 
 function removeFromCart(e) {
     let item_id = e.target.value;
     let url = '/remove/${item_id}/';
-
+console.log(csrftoken)
+    console.log(url)
     fetch(url, {
         method: 'POST',
         headers: {

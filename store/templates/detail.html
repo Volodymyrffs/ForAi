@@ -43,15 +43,15 @@
                         </div>
 
 
+
+        </section>
+
+
    <form id="removeForm" method="POST">
   {% csrf_token %}
   <input type="hidden" name="item_id" value="{{ cart_item.id }}">
   <button type="submit" class="btn btn-danger remove-btn">Remove</button>
 </form>
-        </section>
-
-
-
 
 
 
