@@ -81,7 +81,38 @@ function removeFromCart(e) {
         }
     })
     .catch(error => {
-        console.log('Произошла ошибка при выполнении запроса:', error);
+        console.log(formData);
     });
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+  let removeForms = document.querySelectorAll('.remove-form');
+  removeForms.forEach(function(form) {
+    form.addEventListener('submit', removeCartItem);
+  });
+});
+
+function removeCartItem(e) {
+  e.preventDefault();
+  let form = e.target;
+  let formData = new FormData(form);
+
+  fetch(form.action, {
+    method: 'POST',
+    body: formData,
+    headers: {
+      'X-Requested-With': 'XMLHttpRequest'
+    }
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      console.log('Элемент успешно удален из корзины.');
+    } else {
+      console.log('Ошибка при удалении элемента из корзины.');
+    }
+  })
+  .catch(error => {
+    console.log('Произошла ошибка при выполнении запроса:', error);
+  });
+}

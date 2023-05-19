@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Product, Cart, CartItem, Contact
 from django.http import JsonResponse
+
 import json
 from django.contrib import messages
 import uuid
@@ -150,19 +151,15 @@ def confirm_payment(request, pk):
     return redirect("index")
 
 
+
+
 def remove(request):
     if request.method == 'POST' and request.is_ajax():
-        # Получите идентификатор элемента, который нужно удалить
         item_id = request.POST.get('item_id')
-
-        # Ваш код удаления элемента из корзины
-        # Например:
-        # item = CartItem.objects.get(id=item_id)
-        # item.delete()
+        # Ваш код для удаления элемента из корзины
+        # ...
 
         # Возвращаем успешный ответ JSON
         return JsonResponse({'success': True})
 
-    # Если запрос не является POST или не является AJAX-запросом
     return JsonResponse({'success': False})
-
