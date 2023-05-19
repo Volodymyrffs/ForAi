@@ -48,5 +48,40 @@ function addToCart(e){
     })
 }
 
+let btnsd = document.querySelectorAll(".productContainerD button")
 
+btnsd.forEach(btn=>{
+    btn.addEventListener("click", removeFromCart)
+})
+
+
+
+
+function removeFromCart(e) {
+    let item_id = e.target.value;
+    let url = "/remove/";
+    let formData = new FormData();
+    formData.append('item_id', item_id);
+
+    fetch(url, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest'  // Установите заголовок X-Requested-With для указания AJAX-запроса
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Обработайте успешный ответ
+            console.log('Элемент успешно удален из корзины.');
+        } else {
+            // Обработайте ошибку
+            console.log('Ошибка при удалении элемента из корзины.');
+        }
+    })
+    .catch(error => {
+        console.log('Произошла ошибка при выполнении запроса:', error);
+    });
+}
 

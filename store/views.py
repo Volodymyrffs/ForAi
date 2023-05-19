@@ -150,18 +150,19 @@ def confirm_payment(request, pk):
     return redirect("index")
 
 
-def remove(self, product):
-    """
-    Remove a product from the cart.
-    """
-    product_id = str(product.id)
-    if product_id in self.cart:
-        # Subtract 1 from the quantity
-        self.cart[product_id]['quantity'] -= 1
-        # If the quantity is now 0, then delete the item
-        if self.cart[product_id]['quantity'] == 0:
-            del self.cart[product_id]
-        self.save()
+def remove(request):
+    if request.method == 'POST' and request.is_ajax():
+        # Получите идентификатор элемента, который нужно удалить
+        item_id = request.POST.get('item_id')
 
+        # Ваш код удаления элемента из корзины
+        # Например:
+        # item = CartItem.objects.get(id=item_id)
+        # item.delete()
 
+        # Возвращаем успешный ответ JSON
+        return JsonResponse({'success': True})
+
+    # Если запрос не является POST или не является AJAX-запросом
+    return JsonResponse({'success': False})
 
